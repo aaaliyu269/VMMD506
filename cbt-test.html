@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Veterinary Diseases - CBT Test</title>
+    <style>
+        :root {
+            --primary: #2c5e92;
+            --primary-dark: #1a3d66;
+            --secondary: #8f3a3a;
+            --accent: #4e7d3e;
+            --light: #f8f9fa;
+            --dark: #343a40;
+            --border: #dee2e6;
+            --success: #28a745;
+            --danger: #dc3545;
+            --warning: #ffc107;
+            --card-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #444;
+            background: linear-gradient(135deg, #f0f8ff 0%, #e6f0fa 100%);
+            min-height: 100vh;
+            padding-bottom: 50px;
+            background-attachment: fixed;
+        }
+        
+        header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: white;
+            padding: 1.2rem 0;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 4px solid var(--accent);
+        }
+        
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            transition: var(--transition);
+        }
+        
+        .logo:hover {
+            transform: translateY(-2px);
+        }
+        
+        .logo-icon {
+            font-size: 2.2rem;
+        }
+        
+        .logo h1 {
+            color: white;
+            margin: 0;
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 10px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        
+        nav a {
+            color: white;
+            text-decoration: none;
+            padding: 8px 15px;
+            border-radius: 4px;
+            background: rgba(255, 255, 255, 0.15);
+            transition: var(--transition);
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        nav a:hover, nav a.active {
+            background: rgba(255, 255, 255, 0.3);
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 2rem auto;
+            padding: 0 20px;
+        }
+        
+        /* Test Header */
+        .test-header {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: var(--card-shadow);
+            margin-bottom: 2rem;
+            text-align: center;
+            border-left: 5px solid var(--primary);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .test-header h2 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+            font-size: 2.2rem;
+        }
+        
+        .test-header p {
+            color: var(--dark);
+            max-width: 700px;
+            margin: 0 auto 1.5rem;
+        }
+        
+        /* Timer Section */
+        .timer-container {
+            background: linear-gradient(135deg, #fff3cd 0%, #ffeeb5 100%);
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            text-align: center;
+            box-shadow: var(--card-shadow);
+            border: 2px solid var(--warning);
+        }
+        
+        .timer {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--primary-dark);
+            margin: 0.5rem 0;
+            font-family: monospace;
+        }
+        
+        .timer-label {
+            font-size: 1.1rem;
+            color: var(--dark);
+            font-weight: 600;
+        }
+        
+        .timer-warning {
+            color: var(--danger);
+            animation: pulse 1s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { opacity: 0.6; }
+            50% { opacity: 1; }
+            100% { opacity: 0.6; }
+        }
+        
+        /* Controls */
+        .controls {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin: 1.5rem 0;
+            flex-wrap: wrap;
+        }
+        
+        .btn {
+            padding: 12px 25px;
+            border-radius: 30px;
+            border: none;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 1rem;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: white;
+        }
+        
+        .btn-success {
+            background: linear-gradient(135deg, var(--success) 0%, #1e7e34 100%);
+            color: white;
+        }
+        
+        .btn-danger {
+            background: linear-gradient(135deg, var(--danger) 0%, #bd2130 100%);
+            color: white;
+        }
+        
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* Question Section */
+        .question-container {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: var(--card-shadow);
+            margin-bottom: 2rem;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+        }
+        
+        .question-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid var(--border);
+        }
+        
+        .question-number {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--primary);
+            background: rgba(44, 94, 146, 0.1);
+            padding: 5px 15px;
+            border-radius: 30px;
+        }
+        
+        .question-text {
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.7;
+            color: var(--dark);
+        }
+        
+        /* Options */
+        .options-container {
+            display: grid;
+            gap: 15px;
+        }
+        
+        .option {
+            padding: 1rem;
+            border-radius: 8px;
+            border: 2px solid var(--border);
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+        }
+        
+        .option:hover {
+            border-color: var(--primary);
+            background: rgba(44, 94, 146, 0.03);
+        }
+        
+        .option.selected {
+            border-color: var(--primary);
+            background: rgba(44, 94, 146, 0.08);
+        }
+        
+        .option input[type="radio"] {
+            margin-top: 3px;
+        }
+        
+        .option-label {
+            font-weight: 500;
+            color: var(--dark);
+        }
+        
+        /* Progress Bar */
+        .progress-container {
+            margin: 2rem 0;
+        }
+        
+        .progress-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+        
+        .progress-bar {
+            height: 12px;
+            background: var(--light);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--accent), var(--accent-light));
+            border-radius: 10px;
+            transition: width 0.5s ease;
+        }
+        
+        /* Results Section */
+        .results-container {
+            background: white;
+            border-radius: 15px;
+            padding: 3rem;
+            box-shadow: var(--card-shadow);
+            text-align: center;
+            display: none;
+        }
+        
+        .results-header {
+            margin-bottom: 2rem;
+        }
+        
+        .score-circle {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            margin: 0 auto 2rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background: conic-gradient(var(--success) 0% var(--score-percent), var(--light) var(--score-percent) 100%);
+            position: relative;
+        }
+        
+        .score-inner {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            background: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .score-value {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+        
+        .score-text {
+            font-size: 1.2rem;
+            color: var(--dark);
+        }
+        
+        .result-message {
+            font-size: 1.8rem;
+            margin: 1.5rem 0;
+            color: var(--primary);
+        }
+        
+        .performance-feedback {
+            max-width: 700px;
+            margin: 0 auto 2rem;
+            font-size: 1.1rem;
+            line-height: 1.7;
+        }
+        
+        .review-section {
+            text-align: left;
+            margin-top: 2rem;
+            border-top: 1px solid var(--border);
+            padding-top: 2rem;
+        }
+        
+        .review-item {
+            margin-bottom: 1.5rem;
+            padding: 1.5rem;
+            border-radius: 10px;
+            background: rgba(44, 94, 146, 0.03);
+        }
+        
+        .review-item.correct {
+            border-left: 4px solid var(--success);
+        }
+        
+        .review-item.incorrect {
+            border-left: 4px solid var(--danger);
+        }
+        
+        .review-question {
+            font-weight: 600;
+            margin-bottom: 0.8rem;
+        }
+        
+        .review-answer {
+            padding: 0.5rem 0;
+        }
+        
+        .correct-answer {
+            color: var(--success);
+            font-weight: 600;
+        }
+        
+        .user-answer {
+            color: var(--danger);
+            font-weight: 600;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            nav ul {
+                margin-top: 1rem;
+                justify-content: center;
+            }
+            
+            .test-header h2 {
+                font-size: 1.8rem;
+            }
+            
+            .timer {
+                font-size: 2rem;
+            }
+            
+            .controls {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .btn {
+                width: 100%;
+                max-width: 300px;
+                justify-content: center;
+            }
+            
+            .question-header {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .score-circle {
+                width: 150px;
+                height: 150px;
+            }
+            
+            .score-inner {
+                width: 120px;
+                height: 120px;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <div class="logo">
+                <i class="fas fa-virus logo-icon"></i>
+                <h1>Veterinary Diseases</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+                    <li><a href="cbt-test.html" class="active"><i class="fas fa-pencil-alt"></i> Take a CBT Test</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    
+    <div class="container">
+        <div class="test-header">
+            <h2><i class="fas fa-pencil-alt"></i> Veterinary Diseases Assessment</h2>
+            <p>Test your knowledge of viral diseases in veterinary medicine. This comprehensive test covers key concepts from your course materials.</p>
+            <p><strong>Instructions:</strong> Select the best answer for each question. You have a limited time to complete the test.</p>
+        </div>
+        
+        <div class="timer-container">
+            <div class="timer-label">Time Remaining:</div>
+            <div class="timer" id="timer">30:00</div>
+        </div>
+        
+        <div class="controls">
+            <button class="btn btn-primary" id="startBtn">
+                <i class="fas fa-play"></i> Start Test
+            </button>
+            <button class="btn btn-success" id="submitBtn" disabled>
+                <i class="fas fa-paper-plane"></i> Submit Test
+            </button>
+            <button class="btn btn-danger" id="resetBtn">
+                <i class="fas fa-redo"></i> Reset Test
+            </button>
+        </div>
+        
+        <div class="progress-container">
+            <div class="progress-header">
+                <span>Progress</span>
+                <span id="progress-text">0/10</span>
+            </div>
+            <div class="progress-bar">
+                <div class="progress-fill" id="progress-fill" style="width: 0%"></div>
+            </div>
+        </div>
+        
+        <div id="questions-container">
+            <!-- Questions will be dynamically inserted here -->
+        </div>
+        
+        <div class="results-container" id="results-container">
+            <div class="results-header">
+                <h2><i class="fas fa-trophy"></i> Test Results</h2>
+                <p>Your performance summary</p>
+            </div>
+            
+            <div class="score-circle" id="score-circle">
+                <div class="score-inner">
+                    <div class="score-value" id="score-value">0%</div>
+                    <div class="score-text">Score</div>
+                </div>
+            </div>
+            
+            <div class="result-message" id="result-message"></div>
+            
+            <div class="performance-feedback">
+                <p><strong>Correct Answers:</strong> <span id="correct-count">0</span> out of <span id="total-questions">0</span></p>
+                <p><strong>Time Taken:</strong> <span id="time-taken">0:00</span></p>
+            </div>
+            
+            <div class="controls">
+                <button class="btn btn-primary" id="reviewBtn">
+                    <i class="fas fa-search"></i> Review Answers
+                </button>
+                <button class="btn btn-success" id="retryBtn">
+                    <i class="fas fa-redo"></i> Try Again
+                </button>
+            </div>
+            
+            <div class="review-section" id="review-section" style="display: none;">
+                <h3><i class="fas fa-list-ul"></i> Question Review</h3>
+                <div id="review-questions">
+                    <!-- Review content will be inserted here -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="cbt.js"></script>
+</body>
+</html>
