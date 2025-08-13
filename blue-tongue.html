@@ -1,0 +1,855 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blue Tongue Disease - Veterinary Study Resource</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        :root {
+            --primary: #2c5e92;
+            --secondary: #8f3a3a;
+            --accent: #4e7d3e;
+            --light: #f8f9fa;
+            --dark: #343a40;
+            --border: #dee2e6;
+            --sheep: #2c5e92;
+            --cattle: #8f3a3a;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #f0f8ff 0%, #e6f0fa 100%);
+            min-height: 100vh;
+            padding-bottom: 50px;
+        }
+        
+        header {
+            background: linear-gradient(to right, #2c5e92, #1a3d66);
+            color: white;
+            padding: 1.5rem 0;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .logo-icon {
+            font-size: 2rem;
+        }
+        
+        h1 {
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .subtitle {
+            font-size: 1rem;
+            opacity: 0.9;
+            margin-bottom: 1rem;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 15px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        
+        nav a {
+            color: white;
+            text-decoration: none;
+            padding: 8px 15px;
+            border-radius: 4px;
+            background: rgba(255,255,255,0.15);
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+        
+        nav a:hover, nav a.active {
+            background: rgba(255,255,255,0.3);
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 20px;
+        }
+        
+        .disease-overview {
+            background: white;
+            border-radius: 10px;
+            padding: 2rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            margin-bottom: 2rem;
+        }
+        
+        .disease-header {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid var(--border);
+        }
+        
+        .disease-icon {
+            font-size: 3rem;
+            color: #4e7d3e;
+        }
+        
+        .disease-title {
+            font-size: 2rem;
+            color: var(--primary);
+        }
+        
+        .disease-description {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+            background: #f8f9fa;
+            padding: 1.5rem;
+            border-radius: 8px;
+            border-left: 4px solid var(--accent);
+        }
+        
+        .highlight-box {
+            background: #e8f4ff;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-left: 4px solid var(--primary);
+        }
+        
+        .highlight-box h3 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+        
+        .highlight-items {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        
+        .highlight-item {
+            background: white;
+            padding: 1rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+        
+        .highlight-item h4 {
+            color: var(--secondary);
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .content-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+        
+        .card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .card-header {
+            background: var(--primary);
+            color: white;
+            padding: 1rem 1.5rem;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .card-body {
+            padding: 1.5rem;
+        }
+        
+        .card h3 {
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+        
+        ul {
+            padding-left: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .species-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+        
+        .species-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        
+        .sheep-header {
+            background: var(--sheep);
+        }
+        
+        .cattle-header {
+            background: var(--cattle);
+        }
+        
+        .symptoms-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+        
+        .symptom-card {
+            background: white;
+            border-radius: 10px;
+            padding: 1.5rem;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+            border-top: 4px solid var(--accent);
+        }
+        
+        .symptom-card h3 {
+            color: var(--accent);
+            margin-bottom: 1rem;
+        }
+        
+        .transmission-cycle {
+            background: white;
+            border-radius: 10px;
+            padding: 2rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            margin: 2rem 0;
+            text-align: center;
+        }
+        
+        .cycle-title {
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+        
+        .cycle-diagram {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 30px;
+            margin: 2rem 0;
+        }
+        
+        .cycle-step {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            max-width: 150px;
+            text-align: center;
+        }
+        
+        .cycle-icon {
+            width: 80px;
+            height: 80px;
+            background: #e8f4ff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+        
+        .arrow {
+            font-size: 2rem;
+            color: var(--primary);
+        }
+        
+        .prevention {
+            background: #e6f7ee;
+            border-radius: 10px;
+            padding: 2rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            margin: 2rem 0;
+        }
+        
+        .prevention h2 {
+            color: var(--accent);
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+        
+        .prevention-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        .prevention-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            text-align: center;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+        }
+        
+        .prevention-card i {
+            font-size: 2.5rem;
+            color: var(--accent);
+            margin-bottom: 1rem;
+        }
+        
+        .key-facts {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+        
+        .fact-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+            border-top: 4px solid var(--primary);
+        }
+        
+        .fact-card h3 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .footer-nav {
+            text-align: center;
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--border);
+        }
+        
+        .footer-nav a {
+            display: inline-block;
+            background: var(--primary);
+            color: white;
+            padding: 10px 25px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            margin: 0 10px;
+        }
+        
+        .footer-nav a:hover {
+            background: #1a3d66;
+            transform: translateY(-3px);
+        }
+        
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            nav ul {
+                margin-top: 1rem;
+            }
+            
+            .disease-header {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .cycle-diagram {
+                flex-direction: column;
+            }
+            
+            .arrow {
+                transform: rotate(90deg);
+                margin: 10px 0;
+            }
+            
+            .species-section {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <div class="logo">
+                <i class="fas fa-virus logo-icon"></i>
+                <div>
+                    <h1>Veterinary Viral Diseases</h1>
+                    <div class="subtitle">Study Resource for VMMD506 Examination</div>
+                </div>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+                    <li><a href="nairobi-sheep.html"><i class="fas fa-lungs-virus"></i> Nairobi Sheep</a></li>
+                    <li><a class="active" href="#"><i class="fas fa-head-side-virus"></i> Blue Tongue</a></li>
+                    <li><a href="enzootic-pneumonia.html"><i class="fas fa-lungs"></i> Calf Pneumonia</a></li>
+                    <li><a href="ppr.html"><i class="fas fa-disease"></i> PPR</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    
+    <div class="container">
+        <div class="disease-overview">
+            <div class="disease-header">
+                <i class="fas fa-head-side-virus disease-icon"></i>
+                <h2 class="disease-title">Blue Tongue Disease (BTV)</h2>
+            </div>
+            
+            <div class="disease-description">
+                <p>Blue Tongue is an infectious, non-contagious viral disease affecting domestic and wild ruminants, primarily transmitted by <em>Culicoides</em> midges. The disease is characterized by fever, inflammation of mucous membranes, and in severe cases, cyanosis of the tongue giving the disease its name.</p>
+                <p>While sheep are most severely affected, cattle serve as important reservoir hosts. The disease has significant economic impacts due to trade restrictions and production losses.</p>
+            </div>
+            
+            <div class="highlight-box">
+                <h3><i class="fas fa-exclamation-triangle"></i> Key Characteristics</h3>
+                <div class="highlight-items">
+                    <div class="highlight-item">
+                        <h4><i class="fas fa-skull"></i> Mortality</h4>
+                        <p>2% to 90% (varies by strain)</p>
+                    </div>
+                    <div class="highlight-item">
+                        <h4><i class="fas fa-map-marked-alt"></i> Distribution</h4>
+                        <p>Africa, Middle East, Southern Europe, Americas</p>
+                    </div>
+                    <div class="highlight-item">
+                        <h4><i class="fas fa-bug"></i> Vector</h4>
+                        <p><em>Culicoides</em> species (biting midges)</p>
+                    </div>
+                    <div class="highlight-item">
+                        <h4><i class="fas fa-syringe"></i> Vaccine</h4>
+                        <p>Inactivated vaccine available</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="content-grid">
+            <div class="card">
+                <div class="card-header">
+                    <i class="fas fa-viruses"></i> Etiology
+                </div>
+                <div class="card-body">
+                    <h3>Causative Agent</h3>
+                    <ul>
+                        <li>Blue Tongue Virus (BTV)</li>
+                        <li>Member of genus <em>Orbivirus</em>, family <em>Reoviridae</em></li>
+                        <li>Double-stranded RNA virus with 10 segments</li>
+                        <li>At least 27 distinct serotypes exist</li>
+                        <li>Serotypes vary in virulence and geographic distribution</li>
+                        <li>Virus is resistant to lipid solvents and stable at pH 6-8</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="card">
+                <div class="card-header">
+                    <i class="fas fa-globe-africa"></i> Epidemiology
+                </div>
+                <div class="card-body">
+                    <ul>
+                        <li><strong>Geographic Distribution:</strong> Determined by presence of <em>Culicoides</em> vectors</li>
+                        <li><strong>Primary Regions:</strong> East Africa, Middle East, Southern Europe, and parts of the Americas</li>
+                        <li><strong>Transmission:</strong> Biting midges (<em>Culicoides</em> species)</li>
+                        <li><strong>Seasonality:</strong> Highest incidence in late summer and autumn</li>
+                        <li><strong>Hosts:</strong> Sheep (most susceptible), cattle, goats, deer, and wild ruminants</li>
+                        <li><strong>Reservoir:</strong> Cattle (develop high viremia with minimal signs)</li>
+                        <li>Virus does not spread directly between animals</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="card">
+                <div class="card-header">
+                    <i class="fas fa-biohazard"></i> Pathogenesis
+                </div>
+                <div class="card-body">
+                    <ul>
+                        <li>Virus inoculation by infected midge</li>
+                        <li>Replication in regional lymph nodes</li>
+                        <li>Primary viremia (virus in bloodstream)</li>
+                        <li>Infection of endothelial cells and vascular damage</li>
+                        <li>Secondary viremia (high viral load)</li>
+                        <li>Widespread vascular injury leading to:
+                            <ul>
+                                <li>Edema</li>
+                                <li>Hemorrhage</li>
+                                <li>Ischemia</li>
+                                <li>Necrosis</li>
+                            </ul>
+                        </li>
+                        <li>Virus crosses placenta in pregnant animals</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="card">
+                <div class="card-header">
+                    <i class="fas fa-book-medical"></i> Postmortem Lesions
+                </div>
+                <div class="card-body">
+                    <ul>
+                        <li>Petechial hemorrhages in various organs</li>
+                        <li>Ecchymoses at base of pulmonary artery</li>
+                        <li>Subcutaneous and intramuscular edema</li>
+                        <li>Hydrothorax and hydropericardium</li>
+                        <li>Pneumonia and pericarditis</li>
+                        <li>Ulceration of oral mucosa and tongue</li>
+                        <li>Congestion and hemorrhage in GI tract</li>
+                        <li>Muscle degeneration (skeletal and cardiac)</li>
+                    </ul>
+                    <p class="highlight-box" style="margin-top: 1rem; padding: 0.8rem;">
+                        <i class="fas fa-info-circle"></i> These lesions are considered pathognomonic for Blue Tongue Disease
+                    </p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="species-section">
+            <div class="species-card">
+                <div class="card-header sheep-header">
+                    <i class="fas fa-sheep"></i> Clinical Signs in Sheep
+                </div>
+                <div class="card-body">
+                    <h3>Acute Form</h3>
+                    <ul>
+                        <li>High fever (40.5°C to 41°C)</li>
+                        <li>Reluctance to move</li>
+                        <li>Edema of lips, nose, face, eyelids, and ears</li>
+                        <li>Congestion of oral and nasal mucosa</li>
+                        <li>Serous nasal discharge becoming mucopurulent</li>
+                        <li>Frothy oral discharge</li>
+                        <li>Ulceration of tongue</li>
+                        <li>Swollen cyanotic protruding tongue</li>
+                        <li>Excessive salivation</li>
+                        <li>Torticollis (head turning)</li>
+                        <li>Lameness and stiffness</li>
+                        <li>Death in 6-8 days after onset</li>
+                    </ul>
+                    
+                    <h3>Peracute Cases</h3>
+                    <ul>
+                        <li>Sudden death without prior signs</li>
+                        <li>Severe pulmonary edema</li>
+                        <li>Frothy exudate from nostrils</li>
+                        <li>Death by aspiration</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="species-card">
+                <div class="card-header cattle-header">
+                    <i class="fas fa-cow"></i> Clinical Signs in Cattle
+                </div>
+                <div class="card-body">
+                    <ul>
+                        <li>Usually subclinical (reservoir hosts)</li>
+                        <li>Fever in some cases</li>
+                        <li>Increased respiratory rate</li>
+                        <li>Lacrimation and salivation</li>
+                        <li>Oral vesicles and ulcers</li>
+                        <li>Hyperesthesia (increased sensitivity)</li>
+                        <li>Vesicular and ulcerative dermatitis</li>
+                        <li>Coronitis (inflammation of coronary band)</li>
+                        <li>Nasal discharge</li>
+                        <li>Reduced milk production</li>
+                        <li>Abortion or malformed offspring</li>
+                    </ul>
+                    
+                    <h3>Fetal Effects (Both Species)</h3>
+                    <ul>
+                        <li>Abortion</li>
+                        <li>Mummified fetus</li>
+                        <li>Congenital malformations:
+                            <ul>
+                                <li>Hydranencephaly</li>
+                                <li>Porencephaly</li>
+                                <li>Cerebellar hypoplasia</li>
+                                <li>Arthrogryposis</li>
+                            </ul>
+                        </li>
+                        <li>Live-born animals with neurological defects</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <div class="transmission-cycle">
+            <h2 class="cycle-title"><i class="fas fa-sync-alt"></i> Transmission Cycle</h2>
+            <div class="cycle-diagram">
+                <div class="cycle-step">
+                    <div class="cycle-icon">
+                        <i class="fas fa-mosquito"></i>
+                    </div>
+                    <div>Infected Midge Vector</div>
+                </div>
+                
+                <div class="arrow">
+                    <i class="fas fa-arrow-right"></i>
+                </div>
+                
+                <div class="cycle-step">
+                    <div class="cycle-icon">
+                        <i class="fas fa-sheep"></i>
+                    </div>
+                    <div>Infection of Ruminant</div>
+                </div>
+                
+                <div class="arrow">
+                    <i class="fas fa-arrow-right"></i>
+                </div>
+                
+                <div class="cycle-step">
+                    <div class="cycle-icon">
+                        <i class="fas fa-virus"></i>
+                    </div>
+                    <div>Viremia Development</div>
+                </div>
+                
+                <div class="arrow">
+                    <i class="fas fa-arrow-right"></i>
+                </div>
+                
+                <div class="cycle-step">
+                    <div class="cycle-icon">
+                        <i class="fas fa-mosquito"></i>
+                    </div>
+                    <div>Uninfected Midges Feed</div>
+                </div>
+            </div>
+            <p>The virus circulates between ruminant hosts and <em>Culicoides</em> midges. Infected midges transmit the virus during blood meals. After replication in the host, uninfected midges become infected when feeding on viremic animals. The cycle is dependent on environmental factors that affect midge populations.</p>
+        </div>
+        
+        <div class="content-grid">
+            <div class="card">
+                <div class="card-header">
+                    <i class="fas fa-microscope"></i> Diagnosis
+                </div>
+                <div class="card-body">
+                    <h3>Diagnostic Methods</h3>
+                    <ul>
+                        <li>History and clinical signs (especially in sheep)</li>
+                        <li>Virus isolation (blood, spleen, or lymph nodes)</li>
+                        <li>ELISA (detection of antibodies or antigens)</li>
+                        <li>Immunofluorescent test (tissue sections)</li>
+                        <li>Viral neutralization test (serotype identification)</li>
+                        <li>RT-PCR (detection of viral RNA)</li>
+                        <li>Immunoperoxidase test (tissue detection)</li>
+                        <li>Postmortem lesions examination</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="card">
+                <div class="card-header">
+                    <i class="fas fa-differential"></i> Differential Diagnosis
+                </div>
+                <div class="card-body">
+                    <ul>
+                        <li><strong>Foot and Mouth Disease:</strong> Vesicular lesions in mouth and feet</li>
+                        <li><strong>Malignant Catarrhal Fever:</strong> Ocular and nasal discharge, corneal opacity</li>
+                        <li><strong>Contagious Ecthyma (Orf):</strong> Pustular lesions around mouth</li>
+                        <li><strong>Photosensitization:</strong> Similar facial edema but seasonal</li>
+                        <li><strong>Peste des Petits Ruminants:</strong> Severe diarrhea and pneumonia</li>
+                        <li><strong>Rift Valley Fever:</strong> Abortions and hepatic necrosis</li>
+                        <li><strong>Epizootic Hemorrhagic Disease:</strong> Similar transmission and signs</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="card">
+                <div class="card-header">
+                    <i class="fas fa-heartbeat"></i> Treatment
+                </div>
+                <div class="card-body">
+                    <h3>Management Approach</h3>
+                    <ul>
+                        <li><strong>No specific antiviral treatment</strong></li>
+                        <li>Supportive care is essential:
+                            <ul>
+                                <li>Provide soft, palatable feed</li>
+                                <li>Shelter from sun and wind</li>
+                                <li>Reduce stress and movement</li>
+                            </ul>
+                        </li>
+                        <li>Anti-inflammatory drugs (NSAIDs)</li>
+                        <li>Broad-spectrum antibiotics to prevent secondary infections</li>
+                        <li>Fluid therapy for dehydrated animals</li>
+                        <li>Topical treatments for oral lesions</li>
+                        <li>Euthanasia for severely affected animals</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="card">
+                <div class="card-header">
+                    <i class="fas fa-shield-virus"></i> Prevention & Control
+                </div>
+                <div class="card-body">
+                    <ul>
+                        <li><strong>Vector Control:</strong>
+                            <ul>
+                                <li>Insecticide treatment of animals</li>
+                                <li>Environmental management to reduce breeding sites</li>
+                                <li>Stabling animals during peak midge activity</li>
+                            </ul>
+                        </li>
+                        <li><strong>Vaccination:</strong>
+                            <ul>
+                                <li>Inactivated vaccines (safer but shorter immunity)</li>
+                                <li>Live attenuated vaccines (longer immunity but risk to pregnant animals)</li>
+                                <li>Vaccines are serotype-specific</li>
+                            </ul>
+                        </li>
+                        <li><strong>Surveillance:</strong> Monitoring and reporting systems</li>
+                        <li><strong>Movement Restrictions:</strong> During outbreaks</li>
+                        <li><strong>Biosecurity:</strong> Quarantine of new animals</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <div class="prevention">
+            <h2><i class="fas fa-shield-alt"></i> Prevention Strategies</h2>
+            <div class="prevention-grid">
+                <div class="prevention-card">
+                    <i class="fas fa-mosquito"></i>
+                    <h3>Vector Management</h3>
+                    <p>Use insecticides, reduce breeding sites, and stable animals during peak midge activity</p>
+                </div>
+                
+                <div class="prevention-card">
+                    <i class="fas fa-syringe"></i>
+                    <h3>Vaccination</h3>
+                    <p>Implement vaccination programs with appropriate serotype vaccines</p>
+                </div>
+                
+                <div class="prevention-card">
+                    <i class="fas fa-ban"></i>
+                    <h3>Movement Control</h3>
+                    <p>Restrict movement of animals from endemic to free areas</p>
+                </div>
+                
+                <div class="prevention-card">
+                    <i class="fas fa-clipboard-check"></i>
+                    <h3>Surveillance</h3>
+                    <p>Establish monitoring programs for early detection of outbreaks</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="key-facts">
+            <div class="fact-card">
+                <h3><i class="fas fa-lightbulb"></i> Important Note</h3>
+                <p>Blue Tongue is a notifiable disease in most countries. Any suspected cases must be reported to veterinary authorities immediately. The disease has significant trade implications, and outbreaks can lead to international trade restrictions.</p>
+            </div>
+            
+            <div class="fact-card">
+                <h3><i class="fas fa-exclamation-circle"></i> Zoonotic Potential</h3>
+                <p>Blue Tongue virus does not infect humans and is not considered a zoonotic disease. However, similar viruses in the same family (Orbiviruses) can occasionally cause human illness, so standard precautions should be taken when handling infected animals or samples.</p>
+            </div>
+            
+            <div class="fact-card">
+                <h3><i class="fas fa-temperature-high"></i> Climate Change Impact</h3>
+                <p>Climate change is expanding the geographic range of <em>Culicoides</em> vectors, leading to the spread of Blue Tongue to previously unaffected regions. Surveillance and control programs need to adapt to these changing patterns.</p>
+            </div>
+        </div>
+        
+        <div class="footer-nav">
+            <a href="nairobi-sheep.html"><i class="fas fa-arrow-left"></i> Previous: Nairobi Sheep</a>
+            <a href="index.html"><i class="fas fa-home"></i> Back to Diseases List</a>
+            <a href="enzootic-pneumonia.html">Next: Enzootic Pneumonia <i class="fas fa-arrow-right"></i></a>
+        </div>
+    </div>
+
+    <script>
+        // Simple animation for section headers
+        document.addEventListener('DOMContentLoaded', function() {
+            const headers = document.querySelectorAll('.card-header, .cycle-title, .prevention h2');
+            
+            headers.forEach(header => {
+                header.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-3px)';
+                    this.style.boxShadow = '0 8px 15px rgba(0,0,0,0.1)';
+                });
+                
+                header.addEventListener('mouseleave', function() {
+                    this.style.transform = 'none';
+                    this.style.boxShadow = 'none';
+                });
+            });
+            
+            // Highlight active card on page load
+            const cards = document.querySelectorAll('.card');
+            cards.forEach(card => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(20px)';
+                card.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+                
+                setTimeout(() => {
+                    card.style.opacity = '1';
+                    card.style.transform = 'translateY(0)';
+                }, 200);
+            });
+        });
+    </script>
+</body>
+</html>

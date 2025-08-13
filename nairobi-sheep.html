@@ -1,0 +1,708 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nairobi Sheep Disease - Veterinary Study Resource</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        :root {
+            --primary: #2c5e92;
+            --secondary: #8f3a3a;
+            --light: #f8f9fa;
+            --dark: #343a40;
+            --accent: #28a745;
+            --border: #dee2e6;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            min-height: 100vh;
+            padding-bottom: 50px;
+        }
+        
+        header {
+            background: linear-gradient(to right, var(--primary), #1a3d66);
+            color: white;
+            padding: 1.5rem 0;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .logo-icon {
+            font-size: 2rem;
+        }
+        
+        h1 {
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .subtitle {
+            font-size: 1rem;
+            opacity: 0.9;
+            margin-bottom: 1rem;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 15px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        
+        nav a {
+            color: white;
+            text-decoration: none;
+            padding: 8px 15px;
+            border-radius: 4px;
+            background: rgba(255,255,255,0.15);
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+        
+        nav a:hover, nav a.active {
+            background: rgba(255,255,255,0.3);
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 20px;
+        }
+        
+        .disease-overview {
+            background: white;
+            border-radius: 10px;
+            padding: 2rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            margin-bottom: 2rem;
+        }
+        
+        .disease-header {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid var(--border);
+        }
+        
+        .disease-icon {
+            font-size: 3rem;
+            color: var(--secondary);
+        }
+        
+        .disease-title {
+            font-size: 2rem;
+            color: var(--primary);
+        }
+        
+        .disease-description {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+            background: #f8f9fa;
+            padding: 1.5rem;
+            border-radius: 8px;
+            border-left: 4px solid var(--secondary);
+        }
+        
+        .highlight-box {
+            background: #e8f4ff;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-left: 4px solid var(--primary);
+        }
+        
+        .highlight-box h3 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+        
+        .highlight-items {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        
+        .highlight-item {
+            background: white;
+            padding: 1rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+        
+        .highlight-item h4 {
+            color: var(--secondary);
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .content-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+        
+        .card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .card-header {
+            background: var(--primary);
+            color: white;
+            padding: 1rem 1.5rem;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .card-body {
+            padding: 1.5rem;
+        }
+        
+        .card h3 {
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+        
+        ul {
+            padding-left: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .transmission-cycle {
+            background: white;
+            border-radius: 10px;
+            padding: 2rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            margin: 2rem 0;
+            text-align: center;
+        }
+        
+        .cycle-title {
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+        
+        .cycle-diagram {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 30px;
+            margin: 2rem 0;
+        }
+        
+        .cycle-step {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            max-width: 150px;
+            text-align: center;
+        }
+        
+        .cycle-icon {
+            width: 80px;
+            height: 80px;
+            background: #e8f4ff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+        
+        .arrow {
+            font-size: 2rem;
+            color: var(--primary);
+        }
+        
+        .prevention {
+            background: #e6f7ee;
+            border-radius: 10px;
+            padding: 2rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            margin: 2rem 0;
+        }
+        
+        .prevention h2 {
+            color: var(--accent);
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+        
+        .prevention-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        .prevention-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            text-align: center;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+        }
+        
+        .prevention-card i {
+            font-size: 2.5rem;
+            color: var(--accent);
+            margin-bottom: 1rem;
+        }
+        
+        .key-facts {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+        
+        .fact-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+            border-top: 4px solid var(--primary);
+        }
+        
+        .fact-card h3 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .footer-nav {
+            text-align: center;
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--border);
+        }
+        
+        .footer-nav a {
+            display: inline-block;
+            background: var(--primary);
+            color: white;
+            padding: 10px 25px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            margin: 0 10px;
+        }
+        
+        .footer-nav a:hover {
+            background: #1a3d66;
+            transform: translateY(-3px);
+        }
+        
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            nav ul {
+                margin-top: 1rem;
+            }
+            
+            .disease-header {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .cycle-diagram {
+                flex-direction: column;
+            }
+            
+            .arrow {
+                transform: rotate(90deg);
+                margin: 10px 0;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <div class="logo">
+                <i class="fas fa-virus logo-icon"></i>
+                <div>
+                    <h1>Veterinary Viral Diseases</h1>
+                    <div class="subtitle">Study Resource for VMMD506 Examination</div>
+                </div>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+                    <li><a class="active" href="#"><i class="fas fa-lungs-virus"></i> Nairobi Sheep</a></li>
+                    <li><a href="blue-tongue.html"><i class="fas fa-head-side-virus"></i> Blue Tongue</a></li>
+                    <li><a href="enzootic-pneumonia.html"><i class="fas fa-lungs"></i> Calf Pneumonia</a></li>
+                    <li><a href="#"><i class="fas fa-disease"></i> PPR</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    
+    <div class="container">
+        <div class="disease-overview">
+            <div class="disease-header">
+                <i class="fas fa-lungs-virus disease-icon"></i>
+                <h2 class="disease-title">Nairobi Sheep Disease (NSD)</h2>
+            </div>
+            
+            <div class="disease-description">
+                <p>Nairobi Sheep Disease is a highly infectious acute and fatal viral disease affecting sheep and goats. Characterized by high fever, hemorrhagic gastroenteritis, and mortality rates exceeding 90%, it's primarily transmitted by ticks.</p>
+                <p>NSD is endemic in parts of Africa and poses a significant threat to small ruminant populations. The virus is closely related to the Crimean-Congo Hemorrhagic Fever virus, which affects humans.</p>
+            </div>
+            
+            <div class="highlight-box">
+                <h3><i class="fas fa-exclamation-triangle"></i> Key Characteristics</h3>
+                <div class="highlight-items">
+                    <div class="highlight-item">
+                        <h4><i class="fas fa-skull"></i> Mortality</h4>
+                        <p>Equal to or greater than 90%</p>
+                    </div>
+                    <div class="highlight-item">
+                        <h4><i class="fas fa-map-marked-alt"></i> Distribution</h4>
+                        <p>Endemic in Africa</p>
+                    </div>
+                    <div class="highlight-item">
+                        <h4><i class="fas fa-bug"></i> Vector</h4>
+                        <p>Rhipicephalus appendiculatus ticks</p>
+                    </div>
+                    <div class="highlight-item">
+                        <h4><i class="fas fa-syringe"></i> Vaccine</h4>
+                        <p>No vaccine currently available</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="content-grid">
+            <div class="card">
+                <div class="card-header">
+                    <i class="fas fa-viruses"></i> Etiology
+                </div>
+                <div class="card-body">
+                    <h3>Causative Agent</h3>
+                    <ul>
+                        <li>Nairobi Sheep Disease Virus (NSDV)</li>
+                        <li>Closely related to Crimean-Congo Hemorrhagic Fever Virus</li>
+                        <li>Belongs to the genus Nairovirus, family Bunyaviridae</li>
+                        <li>Enveloped, single-stranded RNA virus</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="card">
+                <div class="card-header">
+                    <i class="fas fa-globe-africa"></i> Epidemiology
+                </div>
+                <div class="card-body">
+                    <ul>
+                        <li><strong>Geographic Distribution:</strong> Primarily found in East Africa</li>
+                        <li><strong>Hosts:</strong> Sheep and goats (primary hosts)</li>
+                        <li><strong>Vector:</strong> <em>Rhipicephalus appendiculatus</em> (brown ear tick)</li>
+                        <li><strong>Reservoir:</strong> Sheep and possibly wildlife</li>
+                        <li><strong>Transmission:</strong> Tick bites (no animal-to-animal transmission)</li>
+                        <li><strong>Maintenance:</strong> Tick-vertebrate-tick cycle in nature</li>
+                        <li>Seasonal occurrence correlates with tick activity</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="card">
+                <div class="card-header">
+                    <i class="fas fa-biohazard"></i> Pathogenesis
+                </div>
+                <div class="card-body">
+                    <ul>
+                        <li>Tick bite deposits virus into host</li>
+                        <li>Virus replicates in local lymph nodes</li>
+                        <li>Enters bloodstream (viremia)</li>
+                        <li>Attaches to gastrointestinal epithelial cells</li>
+                        <li>Causes hemorrhagic damage to GI tract</li>
+                        <li>Leads to hemorrhages and necrosis</li>
+                        <li>Massive endothelial damage causes systemic effects</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="card">
+                <div class="card-header">
+                    <i class="fas fa-stethoscope"></i> Clinical Signs
+                </div>
+                <div class="card-body">
+                    <ul>
+                        <li>High fever (41-42°C)</li>
+                        <li>Anorexia (loss of appetite)</li>
+                        <li>Severe depression</li>
+                        <li>Bloody diarrhea (hemorrhagic gastroenteritis)</li>
+                        <li>Vomiting</li>
+                        <li>Nasal discharge</li>
+                        <li>Abdominal pain</li>
+                        <li>Mortality: 90-100% in susceptible flocks</li>
+                        <li>Death typically occurs 2-7 days after symptom onset</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="card">
+                <div class="card-header">
+                    <i class="fas fa-book-medical"></i> Postmortem Lesions
+                </div>
+                <div class="card-body">
+                    <ul>
+                        <li>Hemorrhagic intestine</li>
+                        <li>Enlarged mesenteric lymph nodes</li>
+                        <li>Abomasal hemorrhages</li>
+                        <li>Gastrointestinal mucosa ulceration</li>
+                        <li>Splenomegaly</li>
+                        <li>Petechiae on heart and other organs</li>
+                        <li>Lungs may show congestion and edema</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="card">
+                <div class="card-header">
+                    <i class="fas fa-microscope"></i> Diagnosis
+                </div>
+                <div class="card-body">
+                    <h3>Diagnostic Methods</h3>
+                    <ul>
+                        <li>History and clinical signs</li>
+                        <li>Viral isolation (from blood or tissues)</li>
+                        <li>ELISA (Enzyme-Linked Immunosorbent Assay)</li>
+                        <li>Histopathology (tissue examination)</li>
+                        <li>Gross lesions examination</li>
+                        <li>RT-PCR (Reverse Transcription Polymerase Chain Reaction)</li>
+                        <li>Serological tests (detection of antibodies)</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <div class="transmission-cycle">
+            <h2 class="cycle-title"><i class="fas fa-sync-alt"></i> Transmission Cycle</h2>
+            <div class="cycle-diagram">
+                <div class="cycle-step">
+                    <div class="cycle-icon">
+                        <i class="fas fa-tick"></i>
+                    </div>
+                    <div>Infected Tick Vector</div>
+                </div>
+                
+                <div class="arrow">
+                    <i class="fas fa-arrow-right"></i>
+                </div>
+                
+                <div class="cycle-step">
+                    <div class="cycle-icon">
+                        <i class="fas fa-sheep"></i>
+                    </div>
+                    <div>Sheep/Goat Infection</div>
+                </div>
+                
+                <div class="arrow">
+                    <i class="fas fa-arrow-right"></i>
+                </div>
+                
+                <div class="cycle-step">
+                    <div class="cycle-icon">
+                        <i class="fas fa-virus"></i>
+                    </div>
+                    <div>Virus Replication</div>
+                </div>
+                
+                <div class="arrow">
+                    <i class="fas fa-arrow-right"></i>
+                </div>
+                
+                <div class="cycle-step">
+                    <div class="cycle-icon">
+                        <i class="fas fa-tick"></i>
+                    </div>
+                    <div>Uninfected Ticks Feed</div>
+                </div>
+            </div>
+            <p>The virus is maintained in nature through a tick-vertebrate-tick cycle. Infected ticks transmit the virus to sheep and goats during feeding. After replication in the host, uninfected ticks become infected when feeding on viremic animals, completing the transmission cycle.</p>
+        </div>
+        
+        <div class="content-grid">
+            <div class="card">
+                <div class="card-header">
+                    <i class="fas fa-differential"></i> Differential Diagnosis
+                </div>
+                <div class="card-body">
+                    <ul>
+                        <li><strong>PPR (Peste des Petits Ruminants):</strong> Causes fever, diarrhea, and high mortality</li>
+                        <li><strong>Coccidiosis:</strong> Diarrhea (sometimes bloody) with weakness</li>
+                        <li><strong>Blue Tongue:</strong> Hemorrhagic lesions, transmitted by biting midges</li>
+                        <li><strong>Salmonellosis:</strong> Septicemia, diarrhea, possible high mortality</li>
+                        <li><strong>Enterotoxemia:</strong> Sudden death with hemorrhagic enteritis</li>
+                        <li><strong>Rift Valley Fever:</strong> Also causes hemorrhagic symptoms and high mortality</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="card">
+                <div class="card-header">
+                    <i class="fas fa-heartbeat"></i> Treatment
+                </div>
+                <div class="card-body">
+                    <h3>Management Approach</h3>
+                    <ul>
+                        <li><strong>No specific antiviral treatment</strong></li>
+                        <li>Supportive therapy is essential:
+                            <ul>
+                                <li>Fluid therapy (e.g., Darrow's solution)</li>
+                                <li>Electrolyte balance maintenance</li>
+                            </ul>
+                        </li>
+                        <li>Broad-spectrum antibiotics to prevent secondary infections</li>
+                        <li>Anti-inflammatory drugs</li>
+                        <li>Isolation of infected animals</li>
+                        <li>Nursing care and comfortable environment</li>
+                        <li>Euthanasia may be necessary in severe cases</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <div class="prevention">
+            <h2><i class="fas fa-shield-virus"></i> Prevention and Control</h2>
+            <div class="prevention-grid">
+                <div class="prevention-card">
+                    <i class="fas fa-tick"></i>
+                    <h3>Tick Control</h3>
+                    <p>Regular acaricide application, pasture management, and tick habitat reduction</p>
+                </div>
+                
+                <div class="prevention-card">
+                    <i class="fas fa-clipboard-check"></i>
+                    <h3>Quarantine</h3>
+                    <p>Isolate newly purchased animals for at least 30 days before introducing to the flock</p>
+                </div>
+                
+                <div class="prevention-card">
+                    <i class="fas fa-pump-soap"></i>
+                    <h3>Hygiene</h3>
+                    <p>Maintain clean housing, proper waste disposal, and disinfection protocols</p>
+                </div>
+                
+                <div class="prevention-card">
+                    <i class="fas fa-ban"></i>
+                    <h3>Movement Control</h3>
+                    <p>Restrict animal movement from endemic to free areas, especially during outbreaks</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="key-facts">
+            <div class="fact-card">
+                <h3><i class="fas fa-lightbulb"></i> Important Note</h3>
+                <p>Nairobi Sheep Disease is a notifiable disease in many countries. Any suspected cases must be reported to veterinary authorities immediately. Early detection and implementation of control measures are crucial for outbreak management.</p>
+            </div>
+            
+            <div class="fact-card">
+                <h3><i class="fas fa-exclamation-circle"></i> Zoonotic Potential</h3>
+                <p>While primarily affecting ruminants, the closely related Crimean-Congo Hemorrhagic Fever virus causes severe disease in humans. Although NSDV itself isn't considered a significant human pathogen, precautions should be taken when handling infected animals or tissues.</p>
+            </div>
+        </div>
+        
+        <div class="footer-nav">
+            <a href="index.html"><i class="fas fa-arrow-left"></i> Back to Diseases List</a>
+            <a href="blue-tongue.html">Next: Blue Tongue Disease <i class="fas fa-arrow-right"></i></a>
+        </div>
+    </div>
+
+    <script>
+        // Simple animation for section headers
+        document.addEventListener('DOMContentLoaded', function() {
+            const headers = document.querySelectorAll('.card-header, .cycle-title, .prevention h2');
+            
+            headers.forEach(header => {
+                header.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-3px)';
+                    this.style.boxShadow = '0 8px 15px rgba(0,0,0,0.1)';
+                });
+                
+                header.addEventListener('mouseleave', function() {
+                    this.style.transform = 'none';
+                    this.style.boxShadow = 'none';
+                });
+            });
+            
+            // Highlight active card on page load
+            const cards = document.querySelectorAll('.card');
+            cards.forEach(card => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(20px)';
+                card.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+                
+                setTimeout(() => {
+                    card.style.opacity = '1';
+                    card.style.transform = 'translateY(0)';
+                }, 200);
+            });
+        });
+    </script>
+</body>
+</html>
