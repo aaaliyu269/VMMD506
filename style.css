@@ -180,6 +180,31 @@ nav a:hover, nav a.active {
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
 }
 
+
+/* 2nd Option */
+nav ul {
+      display: flex;
+      list-style: none;
+      gap: 15px;
+      flex-wrap: wrap;
+      justify-content: center;
+  }
+  
+  nav a {
+      color: #d1f2e1;
+      text-decoration: none;
+      padding: 8px 15px;
+      border-radius: 4px;
+      background: #2c5e92;
+      transition: all 0.3s ease;
+      font-weight: 500;
+  }
+  
+  nav a:hover, nav a.active {
+      background: rgba(255,255,255,0.3);
+      color: #143252;
+  }
+
 /* Disease Overview Section */
 .disease-overview {
   background: white;
