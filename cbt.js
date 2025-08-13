@@ -1,8 +1,8 @@
 
 // Configuration - Easily change test parameters here
 const testConfig = {
-    totalTime: 30 * 60, // 30 minutes in seconds (change this to adjust test duration)
-    totalQuestions: 10, // Total number of questions
+    totalTime: 20 * 60, // 30 minutes in seconds (change this to adjust test duration)
+    totalQuestions: 36, // Total number of questions
     passPercentage: 70   // Minimum percentage to pass the test
 };
 
@@ -425,7 +425,7 @@ function resetTest() {
     
     // Reset state
     timeLeft = testConfig.totalTime;
-    timerElement.textContent = '30:00';
+    timerElement.textContent = '--:--';
     timerElement.classList.remove('timer-warning');
     userAnswers = Array(testConfig.totalQuestions).fill(-1);
     testStarted = false;
